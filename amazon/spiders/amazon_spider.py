@@ -31,6 +31,6 @@ class AmazonSpider(scrapy.Spider):
 
         next_page = f"https://www.amazon.in/s?k={AmazonSpider.search_for}&page={AmazonSpider.page_number}"
 
-        if AmazonSpider.page_number <= AmazonSpider.max_page_number:
+        if (AmazonSpider.page_number <= AmazonSpider.max_page_number) or (AmazonSpider.page_number is not None):
             AmazonSpider.page_number += 1
             yield response.follow(next_page, callback= self.parse)
